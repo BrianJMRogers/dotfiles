@@ -63,11 +63,13 @@ function rstudio()
 	open -a RStudio ./$1
 }
 
-function asm(){
+function asm()
+{
 	java -jar ~/Mars4_5.jar $1
 }
 
-function push(){
+function push()
+{
   if [ $# -eq 2 ]
   then
     echo "two args"
@@ -84,7 +86,8 @@ function push(){
   fi
 }
 
-function tex(){
+function tex()
+{
     if [ "clean" = "$1" ]; then
         # clean up junk tex files
         rm *.aux
@@ -92,6 +95,7 @@ function tex(){
         rm *.toc    
         rm *.lof
         rm *.synctex.gz
+        rm *.blg
         
     elif [ "img" = "$1" ]; then
         teximg
@@ -99,46 +103,51 @@ function tex(){
         teximg2
     elif [ ! -f $1 ]; then
         # The file does not exist at $1 so create it from template
-        cp ~/coding/github/shell_files/template.tex $1
+        cp ~/.template.tex $1
         open -a TeXshop "$1"
     else 
         open -a TeXshop "$1"
     fi
 }
 
-function teximg(){
+function teximg()
+{
 	echo '\\begin{figure} [h!]
   \\begin{center}
+  	\\includegraphics[width=200 pt]{images/boat}
   	\\caption{A boat.}
-  	\\includegraphics[width=200 pt]{../pics/boat}
   	\\label{fig:boat}
   \\end{center}
-\\end{figure}'i\
+\\end{figure}' | pbcopy
+    echo 'A latex image insertion template is copied to your clipboard!'
 }
 
 
-function teximg2(){
+function teximg2()
+{
 	echo '\\usepackage{caption}
 \\begin{figure} [h!]
 	\\centering
 	\\begin{minipage}{.5\\textwidth}
 	  \\centering
+      \\vspace{-10 pt}
+	  \\includegraphics[width=.5\\linewidth]{images/q1a}
 	  \\captionof{figure}{caption2}
-    \\vspace{-10 pt}
-	  \\includegraphics[width=.5\\linewidth]{../pics/q1a}
 	  \\label{fig:test1}
 	\\end{minipage}%
 	\\begin{minipage}{.5\\textwidth}
 	  \\centering
+      \\vspace{-10 pt}
+	  \\includegraphics[width=.5\\linewidth]{images/q1b}
 	  \\captionof{figure}{caption2}
-    \\vspace{-10 pt}
-	  \\includegraphics[width=.5\\linewidth]{../pics/q1b}
 	  \\label{fig:test2}
 	\\end{minipage}
-\\end{figure}'
+\\end{figure}' | pbcopy
+    echo 'A side-by-side latex image insertion template is copied to your clipboard!'
 }
 
-function cpg(){
+function cpg()
+{
 	if [ $1 = "-r" ]; then
 		echo "Copied files and moving to directory $3"
 		cp -r $2 $3
@@ -150,8 +159,14 @@ function cpg(){
 	fi
 }
 
-function ctemp(){
-    cp ~/coding/shell_files/ctemp.c $1
+function ctemp()
+{
+    cp ~/.ctemp.c $1
+}
+
+function c()
+{
+    sh create_thesis.sh
 }
 
 

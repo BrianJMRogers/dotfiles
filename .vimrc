@@ -14,4 +14,6 @@ if has("gui_macvim")
     let macvim_hig_shift_movement = 1
 endif
 
+:set titlestring=[%n]\ %<%f%h%m
+
 set number
