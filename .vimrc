@@ -17,3 +17,6 @@ endif
 :set titlestring=[%n]\ %<%f%h%m
 
 set number
+set tabstop=2
+set softtabstop=0 noexpandtab
+set shiftwidth=2
