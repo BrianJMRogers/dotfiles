@@ -86,6 +86,12 @@ function push()
   fi
 }
 
+# easily get your ip address
+function ip()
+{
+	curl ipecho.net/plain ; echo
+}
+
 function tex()
 {
     if [ "clean" = "$1" ]; then
